@@ -40,11 +40,21 @@ class _GSImagePickerFieldState extends State<GSImagePickerField> {
   @override
   void initState() {
     super.initState();
-    if (widget.model.defaultValue != null) {
-      widget._croppedFilePath = widget.model.defaultValue;
+    if (widget.model.value != null) {
+      widget._croppedFilePath = widget.model.value;
     } else {
       widget._croppedFilePath = null;
     }
+  }
+
+  @override
+  void didUpdateWidget(covariant GSImagePickerField oldWidget) {
+    if (widget.model.value != null) {
+      widget._croppedFilePath = widget.model.value;
+    } else {
+      widget._croppedFilePath = oldWidget._croppedFilePath;
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -255,7 +265,7 @@ class ImagePickedView extends StatelessWidget {
                         height: 20.0,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.red,
+                            backgroundColor: Colors.red,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
                           onPressed: () {

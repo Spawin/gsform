@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
+
 import '../data_model/spinner_data_model.dart';
 import 'field_model.dart';
 
 class GSSpinnerModel extends GSFieldModel {
   List<SpinnerDataModel> items;
   String? hint;
+  ValueChanged<SpinnerDataModel?>? onChange;
 
   GSSpinnerModel(
       {type,
@@ -21,6 +24,7 @@ class GSSpinnerModel extends GSFieldModel {
       onTap,
       showTitle,
       required this.items,
+      this.onChange,
       this.hint})
       : super(
           type: type,
@@ -32,7 +36,7 @@ class GSSpinnerModel extends GSFieldModel {
           postfixWidget: postfixWidget,
           required: required,
           status: status,
-          defaultValue: value,
+          value: value,
           validateRegEx: validateRegEx,
           weight: weight,
           showTitle: showTitle,
